@@ -1,1 +1,74 @@
-This project is a Java-based 2D physics engine that simulates real-time motion, collisions, and rotational dynamics of multiple shapes with a customizable GUI interface.
+🧲 2D Physics Engine in Java
+A fully custom-built 2D Physics Engine written in Java that simulates real-time physical interactions between multiple geometric shapes. Designed from the ground up without any third-party physics libraries, this project demonstrates a deep understanding of classical mechanics, computational geometry, and object-oriented software design.
+
+🔍 Overview
+This engine models the physical world in two dimensions — objects have mass, velocity, acceleration, and rotational properties, and they interact with each other and their environment in physically accurate ways. The simulation runs in real time with a customizable GUI that lets users spawn shapes, tweak physics parameters, and watch the engine respond instantly.
+
+⚙️ Core Features
+🏃 Rigid Body Dynamics
+
+Every shape is treated as a rigid body with properties like mass, moment of inertia, linear velocity, angular velocity, torque, and restitution.
+Motion is governed by Newton's Second Law — forces applied to bodies produce proportional accelerations.
+Rotational dynamics are fully supported — objects spin realistically when force is applied off-center.
+
+💥 Collision Detection
+
+Broad Phase — uses Axis-Aligned Bounding Boxes (AABB) to quickly eliminate non-colliding pairs before expensive checks.
+Narrow Phase — uses the Separating Axis Theorem (SAT) for pixel-accurate detection between convex polygons and circles.
+Supports simultaneous multi-body collision detection across all active shapes in the scene.
+
+⚡ Collision Response
+
+Resolves collisions using impulse-based collision response, computing the exact impulse needed to separate overlapping bodies.
+Handles both elastic (bouncy) and inelastic (sticky) collisions via a configurable coefficient of restitution.
+Applies friction forces at contact points for realistic sliding and resting behaviour.
+
+🔄 Simulation Loop
+
+Runs on a fixed timestep loop decoupled from the render frame rate, ensuring physics consistency regardless of machine speed.
+Integrates motion using Semi-implicit Euler / Verlet integration for numerical stability over long simulations.
+Handles resting contact to prevent objects from sinking into each other under gravity.
+
+🖥️ Customizable GUI
+
+Built with Java Swing / JavaFX for a smooth, interactive interface.
+Users can spawn shapes (circles, rectangles, polygons) with a click.
+Real-time sliders and controls to adjust gravity, friction, restitution, and timestep.
+Shapes can be dragged, thrown, and repositioned mid-simulation.
+Visual debug overlays show velocity vectors, collision normals, and bounding boxes.
+
+
+🛠️ Tech Stack
+LayerTechnologyLanguageJavaGUIJava Swing / JavaFXPhysicsCustom-built engineMathLinear algebra, vector mathParadigmObject-Oriented ProgrammingBuild ToolMaven / Gradle
+
+📐 Architecture
+PhysicsEngine
+├── World          — manages all bodies, forces, and the simulation loop
+├── RigidBody      — represents a physical object with mass, velocity, shape
+├── Shape          — Circle, Rectangle, Polygon with SAT support
+├── CollisionDetector  — broad phase (AABB) + narrow phase (SAT)
+├── CollisionResolver  — impulse-based response, friction, restitution
+├── Integrator     — Euler/Verlet timestep integration
+└── GUI            — Swing/JavaFX renderer and user controls
+
+🚀 Getting Started
+bashgit clone https://github.com/yourusername/2d-physics-engine.git
+cd 2d-physics-engine
+mvn compile
+mvn exec:java -Dexec.mainClass="com.physics.Main"
+
+🎯 What I Learned
+
+How real-world physics translates into mathematical models and code
+The complexity of stable numerical integration and why fixed timesteps matter
+How SAT works for convex shape collision detection
+Impulse resolution mathematics for realistic collision response
+Building a render loop decoupled from a physics loop
+
+
+📌 Future Improvements
+
+Soft body / spring-joint simulation
+Broad phase spatial hashing for large-scale scenes
+3D extension
+Export simulation as video/GIF
